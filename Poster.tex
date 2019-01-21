@@ -7,7 +7,12 @@
 %% %%		Brent Thorne
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% THIS HAS BEEN MODIFIED BY SHEA CONNELL TO CONFORM WITH THE NEEDS
+%% FOR THE EACR TRACKING CANCER CONFERENCE
+
 \documentclass[article,30pt,extrafontsizes]{memoir}
+
+
 
 %utf-8 seems to be important
 \RequirePackage[utf8]{inputenc}
@@ -25,7 +30,10 @@
 \RequirePackage{epstopdf}
 \RequirePackage{stfloats}
 \RequirePackage[export]{adjustbox}
-
+\RequirePackage[norule,symbol]{footmisc}
+\RequirePackage{placeins}
+\RequirePackage[none]{hyphenat}
+\RequirePackage[font=small,labelfont=bf]{caption}
 %For kable extra package :)
 \RequirePackage{booktabs}
 \RequirePackage{longtable}
@@ -53,14 +61,14 @@
 
 % Text Colours
 \definecolor{titletextcol}{HTML}{ffffff}
-\definecolor{authortextcol}{HTML}{DCDCDC}
-\definecolor{affiliationtextcol}{HTML}{A1A1A1}
-\definecolor{headertextcol}{HTML}{CC0000}
+\definecolor{authortextcol}{HTML}{E5E5E5}
+\definecolor{affiliationtextcol}{HTML}{B6B6B6}
+\definecolor{headertextcol}{HTML}{690F8C}
 \definecolor{bodytextcol}{HTML}{000000}
-\definecolor{footnotetextcol}{HTML}{FFFFFF}
+\definecolor{footnotetextcol}{HTML}{000000}
 \definecolor{citecol}{HTML}{CC0000}
 \definecolor{urlcol}{HTML}{008080}
-\definecolor{linkcol}{HTML}{008080}
+\definecolor{linkcol}{HTML}{ffffff}
 
 \RequirePackage{hyperref}
 \hypersetup{
@@ -97,11 +105,11 @@
 \definecolor{light-gray}{gray}{0.9}
 
 %biblatex options
-\RequirePackage[sorting=none,backend=biber]{biblatex}
+\RequirePackage[sorting=none,backend=biber,style=numeric-comp]{biblatex}
 \renewcommand*{\bibfont}{\tiny}
 \bibliography{MyLibrary}
 \defbibheading{bibliography}[\bibname]{%
-\setlength\bibitemsep{0.75\itemsep}
+\setlength\bibitemsep{0.4\itemsep}
 \section*{#1}%
 \markboth{#1}{#1}}
 \AtBeginDocument{%
@@ -109,19 +117,20 @@
 }
 
 %bring in the users information
-\author{Shea P. Connell\textsuperscript{1}, Marcel Hanna\textsuperscript{1},
-Frank McCarthy\textsuperscript{2}, Rachel Hurst\textsuperscript{1},
-Helen Curley\textsuperscript{1}, Martyn Webb\textsuperscript{1}, Helen
-Walker\textsuperscript{3}, Rob Mills\textsuperscript{3}, Richard Y.
-Ball\textsuperscript{3}, Martin G. Sanda\textsuperscript{4}, Kathryn L.
-Pellegrini\textsuperscript{4}, Dattatraya Patil\textsuperscript{4},
-Antoinette S. Perry\textsuperscript{5}, Jack
-Schalken\textsuperscript{6}, Hardev Pandha\textsuperscript{7}, Hayley
-Whitaker\textsuperscript{8}, Nening Dennis\textsuperscript{2}, Christine
-Stuttle\textsuperscript{2}, Ian G. Mills\^{}9, 10, 11\^{}, Ingrid
-Guldvik\textsuperscript{10}, The Movember Urine Biomarker Consortium,
-Chris Parker\^{}12, 13\^{}, Jeremy Clark\textsuperscript{1}, Daniel S.
-Brewer\^{}1, 13\^{}, Colin S. Cooper\textsuperscript{1}}
+\author{\large\textbf{Shea P. Connell}\normalsize\textsuperscript{1}, Marcel
+Hanna\textsuperscript{1}, Frank McCarthy\textsuperscript{2}, Rachel
+Hurst\textsuperscript{1}, Helen Curley\textsuperscript{1}, Martyn
+Webb\textsuperscript{1}, Helen Walker\textsuperscript{3}, Rob
+Mills\textsuperscript{3}, Richard Y. Ball\textsuperscript{3}, Martin G.
+Sanda\textsuperscript{4}, Kathryn L. Pellegrini\textsuperscript{4},
+Dattatraya Patil\textsuperscript{4}, Antoinette S.
+Perry\textsuperscript{5}, Jack Schalken\textsuperscript{6}, Hardev
+Pandha\textsuperscript{7}, Hayley Whitaker\textsuperscript{8}, Nening
+Dennis\textsuperscript{2}, Christine Stuttle\textsuperscript{2}, Ian G.
+Mills\textsuperscript{9,10,11}, Ingrid Guldvik\textsuperscript{10}, The
+Movember GAP1 Urine Biomarker Consortium, Chris
+Parker\textsuperscript{2,12}, Jeremy Clark\textsuperscript{1}, Daniel S.
+Brewer\textsuperscript{1,13}, Colin S. Cooper\textsuperscript{1}}
 \title{\fontfamily{phv}\selectfont Predicting outcome in prostate cancer
 patients using a multi-signature risk classifier, derived from urinary
 extracellular vesicles}
@@ -153,7 +162,7 @@ extracellular vesicles}
 \settrimmedsize{\stockheight}{\stockwidth}{*}
 \settypeblocksize{140cm}{90cm}{*}
 \setlrmargins{*}{*}{1}
-\setulmarginsandblock{2.5cm}{*}{*}
+\setulmarginsandblock{2.5cm}{0cm}{*}
 \setmarginnotes{0em}{0cm}{0cm}
 \setlength{\footskip}{0cm}
 \setlength{\footnotesep}{0cm}
@@ -163,6 +172,7 @@ extracellular vesicles}
 \setlength{\trimedge}{0pt}
 \setlength{\uppermargin}{0pt}
 \checkandfixthelayout
+
 
 \mdfdefinestyle{brentsmdfstyle}{%
   backgroundcolor=titlebgcol,
@@ -176,6 +186,14 @@ extracellular vesicles}
 \RequirePackage{footmisc}
 \def\footnotelayout{\centering\color{footnotetextcol}}
 
+%Allows for the use of blank, un-numbered footnotes
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
 % see https://stackoverflow.com/a/47122900
 
 % choose font family
@@ -185,11 +203,10 @@ extracellular vesicles}
 
 %begin the document
 \begin{document}
-\begin{flushleft}
 \begin{mdframed}[style=brentsmdfstyle]
 
 %sets footnote to be white hopefully
-\renewcommand\footnoterule{}
+\renewcommand*\footnoterule{}
 \renewcommand{\thempfootnote}{\footnotesize\color{footnotetextcol}{\arabic{mpfootnote}}}
 
 % group which adds title author and other infor
@@ -201,19 +218,20 @@ extracellular vesicles}
   \Huge{\fontfamily{phv}\selectfont Predicting outcome in prostate cancer
 patients using a multi-signature risk classifier, derived from urinary
 extracellular vesicles}  \\[0.3in]
-  \color{authortextcol} \normalsize{Shea P. Connell\textsuperscript{1}, Marcel Hanna\textsuperscript{1},
-Frank McCarthy\textsuperscript{2}, Rachel Hurst\textsuperscript{1},
-Helen Curley\textsuperscript{1}, Martyn Webb\textsuperscript{1}, Helen
-Walker\textsuperscript{3}, Rob Mills\textsuperscript{3}, Richard Y.
-Ball\textsuperscript{3}, Martin G. Sanda\textsuperscript{4}, Kathryn L.
-Pellegrini\textsuperscript{4}, Dattatraya Patil\textsuperscript{4},
-Antoinette S. Perry\textsuperscript{5}, Jack
-Schalken\textsuperscript{6}, Hardev Pandha\textsuperscript{7}, Hayley
-Whitaker\textsuperscript{8}, Nening Dennis\textsuperscript{2}, Christine
-Stuttle\textsuperscript{2}, Ian G. Mills\^{}9, 10, 11\^{}, Ingrid
-Guldvik\textsuperscript{10}, The Movember Urine Biomarker Consortium,
-Chris Parker\^{}12, 13\^{}, Jeremy Clark\textsuperscript{1}, Daniel S.
-Brewer\^{}1, 13\^{}, Colin S. Cooper\textsuperscript{1}} \\[0.2in]
+  \color{authortextcol} \normalsize{\large\textbf{Shea P. Connell}\normalsize\textsuperscript{1}, Marcel
+Hanna\textsuperscript{1}, Frank McCarthy\textsuperscript{2}, Rachel
+Hurst\textsuperscript{1}, Helen Curley\textsuperscript{1}, Martyn
+Webb\textsuperscript{1}, Helen Walker\textsuperscript{3}, Rob
+Mills\textsuperscript{3}, Richard Y. Ball\textsuperscript{3}, Martin G.
+Sanda\textsuperscript{4}, Kathryn L. Pellegrini\textsuperscript{4},
+Dattatraya Patil\textsuperscript{4}, Antoinette S.
+Perry\textsuperscript{5}, Jack Schalken\textsuperscript{6}, Hardev
+Pandha\textsuperscript{7}, Hayley Whitaker\textsuperscript{8}, Nening
+Dennis\textsuperscript{2}, Christine Stuttle\textsuperscript{2}, Ian G.
+Mills\textsuperscript{9,10,11}, Ingrid Guldvik\textsuperscript{10}, The
+Movember GAP1 Urine Biomarker Consortium, Chris
+Parker\textsuperscript{2,12}, Jeremy Clark\textsuperscript{1}, Daniel S.
+Brewer\textsuperscript{1,13}, Colin S. Cooper\textsuperscript{1}} \\[0.2in]
   \color{affiliationtextcol} \footnotesize{\textsuperscript{1} Norwich Medical School, University of East Anglia,
 UK; \textsuperscript{2} The Institute of Cancer Research, UK;
 \textsuperscript{3} Norfolk and Norwich University Hospitals NHS
@@ -243,14 +261,20 @@ Norwich Research Park, UK}
 \graphicspath{ {Figures/} }
 \begin{figure}
   \centering
-  \includegraphics[width=80cm]{RiskProfiles}
+  \includegraphics[width=0.96\linewidth]{RiskProfiles}
+  \vspace{-10mm}
+  \captionsetup{width=.95\linewidth}
+  \caption{Combined risk profiles of the entire Movember cohort, grouped by D’Amico risk category and ordered by ascending R4 score.
+  Each individual patient has four signatures associated with their sample, detailing the membership probability of their sample to normal tissue (R1 - green), D’Amico Low-risk (R2 - blue), Intermediate-risk (R3 - yellow), and High-risk (R4 - red). Example profiles of individual patients are shown on the right.}
 \end{figure}
-% Brgin body of poster
+% Begin body of poster
 \begin{adjmulticols*}{2}{10mm}{10mm}
 \normalsize{
 \color{bodytextcol}
+\begin{figure}
 \definecolor{bordercolour}{HTML}{DCDCDC}
 \definecolor{titleColour}{HTML}{252525}
+\definecolor{myframecolour}{HTML}{690F8C}
 \mdfsetup{frametitlealignment=\center,
           frametitlefont=\fontfamily{ppl}\selectfont,
           frametitlefont=\huge,
@@ -258,91 +282,112 @@ Norwich Research Park, UK}
           frametitlefontcolor = titleColour,
           linecolor=black,
           linewidth=5pt}
-\definecolor{myframecolour}{HTML}{690F8C}
 \begin{mdframed}[backgroundcolor = myframecolour,
                   font = \fontfamily{ppl}\selectfont,
                   fontcolor = white, 
                   roundcorner = 20pt, 
                   innerleftmargin = 30pt,
                   innerrightmargin = 30pt,
-                  frametitle={\textbf{Quick Read:}}]
-\large
-\textbf{Question:} Can a non-invasive single-sample urine test reveal \textbf{both diagnostic and prognostic information} about 537 prostate cancer patients, utilising extracellular vesicle-derived RNA expression patterns? \\\\
-\textbf{Findings:} A robust, four-risk-signature model identified two groups with differing rates of treatment intervention in active surveillance use (\textbf{High Risk HR = 3.7, Low Risk HR = -7.0}) and predicted initial biopsy outcome (\textbf{AUC = 0.81})\\\\
-\textbf{Impact:} Clinical implementation of this model has the potential to avoid the unnecessary initial biopsy of men and the repeated, invasive follow-up of men on active surveillance with indolent prostate cancer could be drastically reduced, or provide a means for exiting surveillance altogether.\\
+                  frametitle={\textbf{Quick Read}}]
+
+\Large\textbf{Question: }\large Can a non-invasive single-sample urine test reveal \textbf{both diagnostic \& prognostic information about 537 prostate cancer patients}, utilising extracellular vesicle-derived RNA expression patterns?\bigskip\\
+\Large\textbf{Findings: }\large A robust, four-risk-signature model identified two groups with differing rates of treatment intervention in active surveillance use (\textbf{High Risk HR = 3.7, Low Risk HR = -7.0}) \& predicted initial biopsy outcome (\textbf{AUC = 0.81})\bigskip\\
+\Large\textbf{Impact: }\large Clinical implementation of this model has the potential to \textbf{avoid the unnecessary initial biopsy of men} \& the repeated, invasive follow-up of men on active surveillance with indolent prostate cancer could be drastically reduced, or \textbf{provide a means for exiting surveillance altogether}. 
 \end{mdframed}
-\vspace{-40mm}
+\end{figure}
+\vspace{-45mm}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Prostate cancer is estimated to be diagnosed in 12\% of men, the most
-commonly diagnosed cancer in men in the
-UK\autocite{CancerResearchUK2015}. However, 5-year survival of men with
-prostate cancer is very high, and treatment of indolent, clinically
-``irrelevant'' disease has significant side-effects, including
-incontinence and impotence.
+\vspace{-7.5mm}
 
-Men diagnosed with lower risk cancer are often placed on active
-surveillance (AS) programmes, which have proven successful in improving
-survival rates. Regardless, there is still no formal method for patients
-on AS to exit these programmes.
+\textbf{Clinical problem:} To combat the over-treatment of men with
+indolent prostate cancer, men with D'Amico Low \& favourable
+Intermediate risk cancers are often offered active surveillance (AS) as
+an option\textsuperscript{\cite{Selvadurai2013}}. Involving regular
+assessment for signs of disease progression, AS has proven successful in
+reducing unnecessary treatment.But invasive and repeated assessment
+means elective treatment rates can be higher than
+30\%\textsuperscript{\cite{Hamdy2016}} and there is no formal method for
+patients to exit AS.
 
-Urine represents a suitable medium for non-invasively sampling the
-prostate\autocites{McKiernan2016b}{Tomlins2016a}{Donovan2015}. In this
-vain, we have developed a risk prediction model based on NanoString
-quantified RNA expression in urinary extracellular vesicles, with the
-aim to discriminate accurately between men with, and without, clinically
-significant cancers. \vspace{-30mm}
+\textbf{Rationale:} Previous studies established urine as a suitable
+medium for non-invasive sampling of the
+prostate\textsuperscript{\cite{McKiernan2016b,Tomlins2016a,Donovan2015,VanNeste2016}}.
+In this vein, we have developed a risk prediction model, using
+NanoString quantified RNA expression from urinary extracellular
+vesicles, with the aim to discriminate accurately between men with, and
+without, clinically significant cancers. \vspace{-28.5mm}
 
 \hypertarget{the-movember-cohort}{%
-\section{The Movember Cohort:}\label{the-movember-cohort}}
+\section{The Movember Cohort}\label{the-movember-cohort}}
 
-\textbf{Patients:} 537 men with and without histologically proven cancer
-with a PSA \textless{} 100 ng/mL, collected from urology clinics in the
-UK, Ireland and USA between 2009 and 2015.
+\vspace{-7.5mm}
 
-\textbf{Samples:} NanoString extracellular vesicular RNA expression
-profiles of 167 gene-probes, derived from first-catch post-digital
-rectal examination urine.
+\textbf{Patients \& Samples:} Post-DRE urine from 537 men with and
+without histologically proven cancer with a PSA \textless{} 100 ng/mL,
+collected from urology clinics in the UK, Ireland and USA between 2009
+and 2015. Extracellular vesicle RNA profiles derived with NanoString.
+Biopsy information from trans-rectal ultrasound guided needle biopsy.
 
-\textbf{AS Eligibility:} Age 50--80, clinical stage T1/T2, PSA
-\textless{} 15 ng/mL, Gs \textless{}7 (Gs \textless{} 4+3 if age
-\textgreater{}65), and \textless{}50\% percent positive biopsy cores.
+\textbf{AS Eligibility \& Progression:} Age 50--80, clinical stage
+T1/T2, PSA \textless{} 15 ng/mL, Gs \textless{}7 (Gs \textless{} 4+3 if
+age \textgreater{}65), and \textless{}50\% percent positive biopsy
+cores. Progression was defined as PSA velocity \textgreater{}1 ng/mL per
+year or adverse histology on repeat biopsy, defined as primary G
+\textgreater{}3 or \textgreater{}50\% biopsy cores positive for cancer.
 
-\textbf{Progression:} PSA velocity \textgreater{}1 ng/mL per year or
-adverse histology on repeat biopsy, defined as primary G \textgreater{}3
-or \textgreater{}50\% biopsy cores positive for cancer
-
-\vspace{-25mm}
+\vspace{-28.5mm}
 
 \hypertarget{methods}{%
-\section{Methods:}\label{methods}}
+\section{Methods}\label{methods}}
 
-A continuation-ratio LASSO model was trained on 67\% of the data, using
-D'Amico risk status as an ordinal variable, producing four risk
-signatures for predicting the probability of normal tissue (R1), D'Amico
-Low-risk (R2), Intermediate-risk (R3), and High-risk (R4) PCa in a given
-sample.
+\vspace{-7.5mm}
 
-This model was applied to the test dataset and to an AS sub-cohort (n =
-87) for diagnostic and prognostic evaluation, respectively. ROC-AUC
-analysis was used to test predicting biopsy outcome, and survival
-analyses used to prognosticate the progression of patient in the AS
-cohort. \vspace{-35mm}
+\textbf{Model:} Continuation-ratio LASSO regression trained on 67\% of
+the data \& treating D'Amico risk status as an ordinal variable. Four
+risk signatures generated predicted probabilities of normal tissue (R1),
+D'Amico Low-risk (R2), Intermediate-risk (R3), and High-risk (R4) PCa in
+a given sample.
+
+\textbf{Testing:} ROC-AUC analysis tested prediction of biopsy outcome
+in the remaining 33\% test dataset. Survival analyses assessed
+prognostication of disease progression of patient in an AS sub-cohort
+with long follow-up(n = 87, \textgreater{}5 years). \vspace{-28.5mm}
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-R4 was able to determine a clinically significant biopsy outcome of
-D'Amico Intermediate- or High-Risk from a single urine sample, with an
-\textbf{AUC = 0.813 (95\% CI: 0.779 - 0.847, Figure 1)}.
+\vspace{-7.5mm}
 
-A robust R1 threshold dichotomised AS patients in to groups at low and
-high risk of progression. The two groups had a large difference in time
-to progression: 60\% progression within 5 years of urine sample
-collection in the poor prognosis group compared to 10\% in the good
-prognosis group (\(p\) \textless{} 0.001, log-rank test, Figure 2).
+\textbf{Prediction of D'Amico Risk \& biopsy outcome}: There was a
+strong association with clinical category, appearing to recategorise
+approximately 15\% of samples at either end of each D'Amico risk group
+(Figure 1). AUC of a clinically significant initial biopsy outcome of
+D'Amico Intermediate- or High-Risk: \textbf{0.813 (95\% CI: 0.779 -
+0.847, Figure 2)}.
+
+\textbf{AS Prognostication} Two groups, dichotomised by a robust R4
+threshold had large differences in time to progression; 60\% of those
+deemed high risk progressed whilst only 10\% of low risk patients
+progressed 5 years from urine sample collection: (Figure 3, median
+progression 26\%). Cox models detailed significant differences in
+progression; \textbf{R4 HR = 3.71 (95\% CI: 1.53 to 5.89)}, and
+\textbf{R1 HR =-7.03 (95\% CI: -12.29 to -1.77)}. \vspace{-28.5mm}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\vspace{-7.5mm}
+
+Clinical implementation of our model for biopsy prediction could reduce
+the rate of unnecessary initial biopsy, performing similarly to
+previously published urine tests for clinically significant cancers.
+However, no other test currently exists to prognosticate AS patients as
+we have shown. The model has the potential identify men at particular
+risk of progression, or, more importantly, those who may be safely left
+alone for up to five years.\\
 
 \begin{figure}
 
@@ -350,14 +395,9 @@ prognosis group (\(p\) \textless{} 0.001, log-rank test, Figure 2).
 
 }
 
-\caption{ROC-AUC plot of the ability of R4 to predict the presence of D'Amico Intermediate or High risk cancer on initial biopsy.}\label{fig:unnamed-chunk-2}
+\caption{ROC-AUC plot of the ability of R4 to predict the presence of D'Amico Intermediate or High risk cancer on initial biopsy. Shaded region indicates 95\% confidence intervals from 2000 bootstrap resamples.}\label{fig:unnamed-chunk-2}
 \end{figure}
 \vspace{-10mm}
-
-Cox proportional hazards models showed significant differences in
-clinical outcome based on R1 or R4 of patients. The hazard ratio
-associated with R4 was \textbf{3.71 (95\% CI: 1.53 to 5.89)}, with the
-\textbf{HR of R1 =-7.03 (95\% CI: -12.29 to -1.77)}.
 
 \begin{figure}
 
@@ -365,18 +405,20 @@ associated with R4 was \textbf{3.71 (95\% CI: 1.53 to 5.89)}, with the
 
 }
 
-\caption{Kaplan-Meier plot of time to disease progression in months from initial urine collection. Colours indicate the dichotomised model thresholds, Green – High R1, Red – Low R1. Numbers above the x-axis indicate the number of patients in each group at risk at the given time intervals.}\label{fig:unnamed-chunk-3}
+\caption{Kaplan-Meier plot of time to disease progression in months from initial urine collection. Colours indicate the dichotomised model thresholds, Green – Low R4, Red – High R4. Numbers above the x-axis indicate the number of patients in each group at risk at the given time intervals. Shaded regions indicate 95\% confidence intervals.}\label{fig:unnamed-chunk-3}
 \end{figure}
 
-\vspace{-45mm}
-\footnotesize\printbibliography
-
-\vspace{5mm}
+\vspace{-15mm}
 \begin{figure}
-\includegraphics[width = 10cm,right]{UEA_NEW_BRAND_Cyan_N_A}
+\printbibliography 
+\vspace{0mm}
+\centering
+\includegraphics[clip=true,width = 38cm]{Affiliations}
 \end{figure}
+\vspace{-60mm}
+
+\blfootnote{\newline All analyses presented were undertaken in R, with the poster produced through the `posterdown` package. All of the code \& data needed to reproduce this poster exactly as seen can be found at \textbf{https://github.com/Shedimus/EACR-Tracking-Cancer}\raisebox{-.4\height}{\includegraphics[clip=true,width = 4cm]{GitHubQR}}}
 }
 \end{adjmulticols*}
 %end the poster
-\end{flushleft}
 \end{document}
