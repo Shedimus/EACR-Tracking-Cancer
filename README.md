@@ -29,7 +29,8 @@ You can install and use **EACR_posterdown** from github using the `devtools` pac
    devtools::install_github("Shedimus/EACR_posterdown")
     ```
 
-3. Install `tinytex`Latex libraries:
+3. Install `tinytex`Latex libraries.  
+     _**NOTE** This is not _strictly_ necessary, some users have reported sucess with MikTeX, MacTeX and other versions. Your mileage may vary so tinytex is the only **officially** supported library:_
 
     ```r
     tinytex::install_tinytex()
