@@ -1,5 +1,5 @@
 # EACR Tracking Cancer Poster
-This repository serves as a reference for the poster originally presented by myself at the EACR Tracking Cancer conference in Barcelona, 2019. 
+This repository serves as a reference for the poster originally presented by myself (Shea Connell) at the EACR Tracking Cancer conference in Barcelona, 2019. 
 
 All of the data and code required to produce a final pdf version of the poster is included here if you so wish. Please also feel free to modify or copy poster layouts for your own needs too. 
 
