@@ -66,46 +66,49 @@ library(pROC)
                   innerrightmargin = 30pt,
                   frametitle={\textbf{Quick Read}}]
 
-\Large\textbf{Question: }\large Can a non-invasive single-sample urine test reveal \textbf{both diagnostic \& prognostic information about 537 prostate cancer patients}, utilising extracellular vesicle-derived RNA expression patterns?\bigskip\\
-\Large\textbf{Findings: }\large A robust, four-risk-signature model identified two groups with differing rates of treatment intervention in active surveillance use (\textbf{High Risk HR = 3.7, Low Risk HR = -7.0}) \& predicted initial biopsy outcome (\textbf{AUC = 0.81})\bigskip\\
-\Large\textbf{Impact: }\large Clinical implementation of this model has the potential to \textbf{avoid the unnecessary initial biopsy of men} \& the repeated, invasive follow-up of men on active surveillance with indolent prostate cancer could be drastically reduced, or \textbf{provide a means for exiting surveillance altogether}. 
+\Large\textbf{Question: }\large Can a non-invasive, single-sample urine test reveal \textbf{both diagnostic \& prognostic information about 537 prostate cancer patients}, by utilising RNA expression patterns in extracellular vesicles?\bigskip\\
+\Large\textbf{Findings: }\large A robust, four-risk-signature model identified two groups with differing rates of treatment intervention in active surveillance use (\textbf{R4 HR = 3.7, R1 HR = -7.0}) \& predicted initial biopsy outcome (\textbf{AUC = 0.81})\bigskip\\
+\Large\textbf{Impact: }\large Clinical implementation of this model has the potential to \textbf{avoid the unnecessary initial biopsy of men \& drastically reduce the repeated, invasive follow-up} of men on active surveillance with indolent prostate cancer.
 \end{mdframed}
 \end{figure}
 \vspace{-45mm}
 
 # Introduction
-\vspace{-7.5mm}
-**Clinical problem:** To combat the over-treatment of men with indolent prostate cancer, men with D'Amico Low & favourable Intermediate risk cancers are often offered active surveillance (AS) as an option^\cite{Selvadurai2013}^. Involving regular assessment for signs of disease progression, AS has proven successful in reducing unnecessary treatment.But invasive and repeated assessment means elective treatment rates can be higher than 30%^\cite{Hamdy2016}^ and there is no formal method for patients to exit  AS. 
+\vspace{-5mm}
+**Clinical problem:** To combat the over-treatment of men with indolent prostate cancer, D'Amico Low- & favourable Intermediate- Risk (of disease recurrence post-treatment) patients are often offered active surveillance (AS) as an option^\cite{Selvadurai2013}^. Involving regular assessment for signs of disease progression, AS has shown success in reducing unnecessary treatment, and the side-effects that accompany it^\cite{Donovan2016}^. However, invasive and repeated assessment means self-elective treatment can reach  30%^\cite{Hamdy2016}^ and there is no formal method for patients to exit AS. 
 
 **Rationale:** Previous studies established urine as a suitable medium for non-invasive sampling of the prostate^\cite{McKiernan2016b,Tomlins2016a,Donovan2015,VanNeste2016}^. In this vein, we have developed a risk prediction model, using NanoString quantified RNA expression from urinary extracellular vesicles, with the aim to discriminate accurately between men with, and without, clinically significant cancers. 
-\vspace{-28.5mm} 
+\vspace{-26mm} 
 
 # The Movember Cohort
-\vspace{-7.5mm}
-  **Patients \& Samples:** Post-DRE urine from 537 men with and without histologically proven cancer with a PSA < 100 ng/mL, collected from urology clinics in the UK, Ireland and USA between 2009 and 2015. Extracellular vesicle RNA profiles derived with NanoString. Biopsy information from trans-rectal ultrasound guided needle biopsy.  
+\vspace{-3mm}
+  **Patients \& Samples:** Post-DRE urine from 537 men with \& without histologically proven cancer and PSA <100 ng/mL, collected from urology clinics in the UK, Ireland \& USA between 2009 and 2015. Extracellular vesicle RNA profiles derived by NanoString nCounter. Trans-rectal ultrasound-guided needle biopsies were graded by Gleason score (Gs).  
 
-  **AS Eligibility \& Progression:** Age 50–80, clinical stage T1/T2, PSA < 15 ng/mL, Gs <7 (Gs < 4+3 if age >65), and <50% percent positive biopsy cores. Progression was defined as PSA velocity >1 ng/mL per year or adverse histology on repeat biopsy, defined as primary G >3 or >50% biopsy cores positive for cancer. 
+  **AS Eligibility \& Progression:** Age 50–80, clinical stage T1/T2, PSA <15 ng/mL, Gs <7 (Gs <4+3 if age >65), \& <50% percent positive biopsy cores. Progression was defined as PSA velocity >1 ng/mL per year, or adverse histology on repeat biopsy, defined as primary Gs >3 or >50% biopsy cores positive for cancer. 
 
-\vspace{-28.5mm}
+\vspace{-26mm}
 
 # Methods
-\vspace{-7.5mm}
-**Model:** Continuation-ratio LASSO regression trained on 67% of the data \& treating D'Amico risk status as an ordinal variable. Four risk signatures generated predicted probabilities of normal tissue (R1), D’Amico Low-risk (R2), Intermediate-risk (R3), and High-risk (R4) PCa in a given sample. 
+\vspace{-4mm}
+**Model:** A continuation-ratio LASSO regression, trained on D'Amico status as an ordinal variable, with 67% of the data. Four risk signatures generated predicted probabilities of normal tissue (R1), D’Amico Low-risk (R2), Intermediate-risk (R3), \& High-risk (R4) PCa in a given sample. 
 
-**Testing:**  ROC-AUC analysis tested prediction of biopsy outcome in the remaining 33% test dataset. Survival analyses assessed prognostication of disease progression of patient in an AS sub-cohort with long follow-up(n = 87, >5 years). 
-\vspace{-28.5mm}
+**Testing:**  ROC-AUC analysis tested prediction of biopsy outcome in the remaining 33% test dataset. Survival analyses assessed prognostication of disease progression of patients in an AS sub-cohort with long follow-up (n = 87, >5 years). Robustness testing of model training and analyses were undertaken with a minimum of 1,000 resamples.
+\vspace{-26mm}
 
 # Results
-\vspace{-7.5mm}
-**Prediction of D'Amico Risk \& biopsy outcome**: There was a strong association with clinical category, appearing to recategorise approximately 15% of samples at either end of each D'Amico risk group (Figure 1). AUC of a clinically significant initial biopsy outcome of D'Amico Intermediate- or High-Risk: **0.813 (95% CI: 0.779 - 0.847, Figure 2)**. 
+\vspace{-4mm}
+**Prediction of D'Amico Risk \& Biopsy Outcome:** There was a strong association with clinical category, appearing to recategorise approximately 15% of samples at the ends of each D'Amico risk group (\textbf{Figure 1}). AUC of a clinically significant initial biopsy outcome of D'Amico Intermediate- or High-Risk: **0.813 (95% CI: 0.779 - 0.847, Figure 2)**. 
 
-**AS Prognostication** Two groups, dichotomised by a robust R4 threshold had large differences in time to progression; 60% of those deemed high risk progressed whilst only 10% of low risk patients progressed 5 years from urine sample collection: (Figure 3, median progression 26%). Cox models detailed significant differences in progression; **R4 HR = 3.71 (95% CI: 1.53 to 5.89)**, and **R1 HR =-7.03 (95% CI: -12.29 to -1.77)**. 
-\vspace{-28.5mm}
+**AS Prognostication:** Two groups, dichotomised by a robust R4 threshold had large differences in time to progression; 60% of high R4 patients progressed whilst only 10% of low R4 men progressed 5 years from urine sample collection: (\textbf{Figure 3}, median progression 26%). Cox models, treating R1 and R4 continuously, detailed significant differences in progression; **R4 HR = 3.71 (95% CI: 1.53 to 5.89)**, \& **R1 HR = -7.03 (95% CI: -12.29 to -1.77)**.
+\vspace{-26mm}
 
-# Conclusion
-\vspace{-7.5mm}
-Clinical implementation of our model for biopsy prediction could reduce the rate of unnecessary initial biopsy, performing similarly to previously published urine tests for clinically significant cancers. However, no other test currently exists to prognosticate AS patients as we have shown. The model has the potential identify men at particular risk of progression, or, more importantly, those who may be safely left alone for up to five years.  
-```{r, fig.cap='ROC-AUC plot of the ability of R4 to predict the presence of D\'Amico Intermediate or High risk cancer on initial biopsy. Shaded region indicates 95\\% confidence intervals from 2000 bootstrap resamples.', cache=TRUE, fig.asp = 0.8, fig.width=5, out.extra='trim={0 5mm 0 10mm},clip'}
+# Conclusions
+\vspace{-3mm}
+This model shows potential clinical utility at multiple points in the treatment pathway of prostate cancer. Initial biopsy prediction compares favourably to previously published urine tests^\cite{McKiernan2016b,Tomlins2016a,Donovan2015,VanNeste2016}^, whilst nothing currently exists to prognosticate AS patients as we have shown.  
+The ability of this model to discriminate between those at particular risk of progression, \& men who may safely avoid the repeated \& invasive follow-up of AS for up to five years could substantially reduce self-elective treatment. 
+
+```{r, fig.cap='ROC-AUC plot of the ability of R4 to predict the presence of D\'Amico Intermediate or High-Risk cancer on initial biopsy. Shaded region indicates 95\\% confidence intervals from 2,000 bootstrap resamples.', cache=TRUE, fig.asp = 0.8, fig.width=5, out.extra='trim={0 5mm 0 10mm},clip'}
+set.seed(2019)
 #Read in the pre-cleaned data:
 Results <- readRDS("data/Results.RDS") 
 par(bty = "n")
@@ -143,7 +146,7 @@ mtext(side=2, line=2, "Sensitivity")
 ```
 \vspace{-10mm}
 
-```{r, fig.asp=0.75, fig.cap='Kaplan-Meier plot of time to disease progression in months from initial urine collection. Colours indicate the dichotomised model thresholds, Green – Low R4, Red – High R4. Numbers above the x-axis indicate the number of patients in each group at risk at the given time intervals. Shaded regions indicate 95\\% confidence intervals.', out.extra='trim={0 2.5mm 0 2.5mm},clip'}
+```{r, fig.asp=0.75, fig.cap='Kaplan-Meier plot of time to disease progression in months from initial urine collection. Colours indicate the dichotomised model threshold groups, Green – Low R4, Red – High R4. Numbers above the x-axis indicate the number of patients in each group remaining at risk at the given time intervals. Shaded regions indicate 95\\% confidence intervals.', out.extra='trim={0 2.5mm 0 2.5mm},clip'}
 #Read in the pre-cleaned data:
 ASResults <- readRDS("data/ASResults.RDS") 
 #Optimise the threshold to find the best binary threshold that keeps at least 30% of patients in the smallest group
@@ -186,10 +189,10 @@ R4_HRConf = confint(R4coxmodel)
 \vspace{-15mm}
 \begin{figure}
 \printbibliography 
-\vspace{0mm}
+\vspace{-5mm}
 \centering
-\includegraphics[clip=true,width = 38cm]{Affiliations}
+\includegraphics[clip=true,width = 40cm]{Affiliations}
 \end{figure}
 \vspace{-60mm}
 <!--- Add the footnote and the QR code to the GitHub repo, with the raisebox argument adjusting the image vertical centering -->
-\blfootnote{\newline All analyses presented were undertaken in R, with the poster produced through the `posterdown` package. All of the code \& data needed to reproduce this poster exactly as seen can be found at \textbf{https://github.com/Shedimus/EACR-Tracking-Cancer}\raisebox{-.4\height}{\includegraphics[clip=true,width = 4cm]{GitHubQR}}}
+\blfootnote{\newline All analyses presented were undertaken in R, with the poster produced through the `posterdown` package. All of the code \& data needed to reproduce this poster exactly as seen can be found at \textbf{github.com/Shedimus/EACR-Tracking-Cancer:}\raisebox{-.4\height}{\includegraphics[clip=true,width = 4cm]{GitHubQR}}}
